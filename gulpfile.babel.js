@@ -4,6 +4,7 @@ import autoprefixer from "gulp-autoprefixer";
 import minifyCSS from "gulp-csso";
 import del from "del";
 import bro from "gulp-browserify";
+import babel from "babelify";
 
 sass.compiler = require("node-sass");
 
@@ -39,7 +40,15 @@ const styles = () => {
 const js = () =>
   gulp
     .src(paths.js.src)
-    .pipe(bro())
+    .pipe(
+      bro({
+        transform: [
+          babel.configure({
+            presets: ["@babel/preset-env"]
+          })
+        ]
+      })
+    )
     .pipe(gulp.dest(paths.js.dest));
 
 const watchFiles = () => {
@@ -48,5 +57,7 @@ const watchFiles = () => {
 };
 
 const dev = gulp.series(clean, styles, js, watchFiles);
+
+export const build = gulp.series(clean, styles, js);
 
 export default dev;
