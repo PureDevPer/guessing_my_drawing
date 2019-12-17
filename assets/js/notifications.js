@@ -5,7 +5,7 @@ const fireNotification = (text, color) => {
   notification.innerText = text;
   notification.style.backgroundColor = color;
   notification.className = "notification";
-  notification.appendChild(notification);
+  notifications.appendChild(notification);
 };
 
 export const handleNewUser = ({ nickname }) =>
