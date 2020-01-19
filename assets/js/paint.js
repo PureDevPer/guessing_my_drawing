@@ -4,7 +4,6 @@ const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const colors = document.getElementsByClassName("jsColor");
 const mode = document.getElementById("jsMode");
-
 const INITIAL_COLOR = "#2c2c2c";
 const CANVAS_SIZE = 700;
 
@@ -38,10 +37,10 @@ const onMouseMove = event => {
   const y = event.offsetY;
   if (!painting) {
     beginPath(x, y);
-    getSocket().emit(window.event.beginPath, { x, y });
+    getSocket().emit(window.events.beginPath, { x, y });
   } else {
     strokePath(x, y);
-    getSocket().emit(window.event.strokePath, { x, y });
+    getSocket().emit(window.events.strokePath, { x, y });
   }
 };
 
