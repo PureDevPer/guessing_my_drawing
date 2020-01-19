@@ -38,10 +38,10 @@ const onMouseMove = event => {
   const y = event.offsetY;
   if (!painting) {
     beginPath(x, y);
-    getSocket().emit(window.EventSource.beginPath, { x, y });
+    getSocket().emit(window.event.beginPath, { x, y });
   } else {
     strokePath(x, y);
-    getSocket().emit(window.EventSource.strokePath, { x, y });
+    getSocket().emit(window.event.strokePath, { x, y });
   }
 };
 
@@ -83,3 +83,6 @@ Array.from(colors).forEach(color =>
 if (mode) {
   mode.addEventListener("click", handleMouseClick);
 }
+
+export const handleBeganPath = ({ x, y }) => beginPath(x, y);
+export const handleStrokedPath = ({ x, y }) => strokePath(x, y);
