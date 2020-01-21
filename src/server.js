@@ -24,4 +24,4 @@ const io = socketIO.listen(server);
 
 let sockets = [];
 
-io.on("connect", socket => socketController(socket));
+io.on("connection", socket => socketController(socket, io));
