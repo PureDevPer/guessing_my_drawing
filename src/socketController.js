@@ -17,19 +17,23 @@ const socketController = (socket, io) => {
       inProgress = true;
       const leader = chooseLeader();
       word = chooseWord();
+      io.to(leader.id).emit(events.leaderNotif, { word });
+      superBroadcast(events.gameStarted);
     }
   };
+  const endGame = () => (inProgress = false);
 
   socket.on(events.setNickname, ({ nickname }) => {
     socket.nickname = nickname;
     sockets.push({ id: socket.id, points: 0, nickname });
     broadcast(events.newUser, { nickname });
     sendPlayerUpdate();
-    startGame();
+    if (sockets.length === 1) startGame();
   });
 
   socket.on(events.disconnect, () => {
     sockets = sockets.filter(aSocket => aSocket.id !== socket.id);
+    if (sockets.length === 1) endGame();
     broadcast(events.disconnected, { nickname: socket.nickname });
     sendPlayerUpdate();
   });
