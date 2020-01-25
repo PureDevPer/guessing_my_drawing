@@ -35,7 +35,7 @@ export const handleLeaderNotif = ({ word }) => {
   enableCanvas();
   showControls();
   disableChat();
-  notifs.innerText = `You are the leader, paint: ${word}`;
+  notifs.innerText = `You are the leader. paint: ${word}`;
 };
 
 export const handleGameEnded = () => {

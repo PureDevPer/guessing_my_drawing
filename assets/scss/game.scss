@@ -1,7 +1,7 @@
 .gameContainer {
   display: flex;
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto;
   justify-content: center;
   flex-wrap: wrap;
   .canvas,
@@ -13,6 +13,14 @@
   }
   .main {
     margin-right: 200px;
+    #jsNotifs {
+      margin-bottom: 30px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 600;
+      color: #ff7675;
+      text-transform: uppercase;
+    }
     #jsCanvas {
       width: 700px;
       height: 700px;
