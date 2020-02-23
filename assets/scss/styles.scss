@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+@import "header";
 @import "reset";
 @import "variables";
 @import "login";
@@ -29,7 +30,8 @@ body {
   min-height: 100%;
 
   .loginBox,
-  .gameContainer {
+  .gameContainer,
+  .header {
     display: none;
   }
   &.loggedOut {
@@ -38,6 +40,11 @@ body {
     }
   }
   &.loggedIn {
+    display: flex;
+    flex-direction: column;
+    .header {
+      display: block;
+    }
     .gameContainer {
       display: flex;
     }
